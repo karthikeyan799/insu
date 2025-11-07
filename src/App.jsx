@@ -49,9 +49,9 @@ function App() {
               // </RequireAuth>
             } />
             <Route path="/dashboard" element={
-              // <RequireAuth>
+              <RequireAuth>
                 <Dashboard />
-              // </RequireAuth>
+               </RequireAuth>
               }/>
             <Route path='/rightJoin' element={
               <RequireAuth>

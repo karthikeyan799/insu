@@ -20,7 +20,7 @@ export default function Navbar() {
     const toggleMenu = () => {
       document.body.classList.toggle('show-mobile-menu');
     };
-    const navmenu = document.getElementById('show-mobile-menu');
+    
     if (menuOpenButton) {
       menuOpenButton.addEventListener("click", toggleMenu
         //         () => {
