@@ -14,8 +14,8 @@ export default function AuthProvider({ children }) {
         password: ''
     })
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) setUser(JSON.parse(storedUser));
+        // const storedUser = localStorage.getItem("user");
+        // if (storedUser) setUser(JSON.parse(storedUser));
     }, []);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     // const login = (username,password) => {
