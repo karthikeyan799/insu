@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { API_BASE_LINE } from '../API';
 
 export default function FetchById() {
   
@@ -16,7 +17,8 @@ export default function FetchById() {
   };
   const fetchRecord = async () => {
     try {
-      const record = await axios.get(`http://localhost:8080/fetchPolicyById?id=${fetch.policyId}`,
+      // const record = await axios.get(`http://localhost:8080/fetchPolicyById?id=${fetch.policyId}`,
+      const record = await axios.get(`${API_BASE_LINE}fetchPolicyById?id=${fetch.policyId}`,
       );
       const rec = record.data.policy;
 

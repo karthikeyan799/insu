@@ -14,8 +14,8 @@ export default function AuthProvider({ children }) {
         password: ''
     })
     useEffect(() => {
-        // const storedUser = localStorage.getItem("user");
-        // if (storedUser) setUser(JSON.parse(storedUser));
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) setUser(JSON.parse(storedUser));
     }, []);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     // const login = (username,password) => {
@@ -67,7 +67,7 @@ export default function AuthProvider({ children }) {
             else if (datas === "Login Success") {
 
                 const loggedUser = { userName };
-                localStorage.setItem("user", JSON.stringify(loggedUser));
+                // localStorage.setItem("user", JSON.stringify(loggedUser));cmd
                 setIsLoggedIn(true);
                 setUser(loggedUser);
 
@@ -103,7 +103,7 @@ export default function AuthProvider({ children }) {
         setIsLoggedIn(false);
         setUser(null);
         alert("logout");
-        localStorage.removeItem("user");
+        localStorage.removeItem("user");//cmd
     }
     const handleChange = (e) => {
         setError({ ...error, [e.target.name]: e.target.value });

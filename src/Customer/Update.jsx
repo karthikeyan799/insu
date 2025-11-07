@@ -2,6 +2,7 @@ import { clearAllListeners } from '@reduxjs/toolkit';
 import axios from 'axios';
 import React, { useState } from 'react'
 import { data } from 'react-router-dom';
+import { API_BASE_LINE } from '../API';
 
 export default function Update() {
   const [customer, setCustomer] = useState({
@@ -21,7 +22,8 @@ export default function Update() {
   }
   const handleUpdate = async (e) => {
     try {
-      const result = await axios.post(`http://localhost:8080/updateCustomer?customerId?=${customer.customerId}`, customer);
+      // const result = await axios.post(`http://localhost:8080/updateCustomer?customerId?=${customer.customerId}`, customer);
+      const result = await axios.post(`${API_BASE_LINE}updateCustomer?customerId?=${customer.customerId}`, customer);
       const datas = result.data.customer;
       if (datas === null) {
         alert("update failed")
@@ -41,7 +43,8 @@ export default function Update() {
     console.log("submit clicked")
     // const validationError = validation(customer);
     try {
-      const result = await axios.get(`http://localhost:8080/fetchCustomerId?customerId=${customer.customerId}`)
+      // const result = await axios.get(`http://localhost:8080/fetchCustomerId?customerId=${customer.customerId}`)
+      const result = await axios.get(`${API_BASE_LINE}fetchCustomerId?customerId=${customer.customerId}`)
       const rec = result.data.customer;
       // setCustomer(result.data.customer);
       setValid(true);

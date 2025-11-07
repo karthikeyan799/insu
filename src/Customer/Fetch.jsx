@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { API_BASE_LINE } from '../API';
 // import { data } from 'react-router-dom';
 
 export default function Fetch() {
@@ -16,7 +17,8 @@ export default function Fetch() {
   const loadCustomers = async () => {
 
     try {
-      const result = await axios.get(`http://localhost:8080/fetchCustomerId?customerId=${customer.customerId}`);
+      // const result = await axios.get(`http://localhost:8080/fetchCustomerId?customerId=${customer.customerId}`);
+      const result = await axios.get(`${API_BASE_LINE}fetchCustomerId?customerId=${customer.customerId}`);
       // setCustomer(result.data.customer);
       const datas = result.data.customer;
       console.log(datas);

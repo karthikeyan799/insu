@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios"
+import { API_BASE_LINE } from '../API';
 export default function Add() {
 
     const [customers, setCustomer] = useState({
@@ -42,7 +43,8 @@ export default function Add() {
         }
         try {
             console.log("try block enter")
-            const result = await axios.post("http://localhost:8080/addCustomer", customers)
+            // const result = await axios.post("http://localhost:8080/addCustomer", customers)
+            const result = await axios.post(`${API_BASE_LINE}addCustomer`, customers)
             const datas = result.data.customer;
             console.log("try block")
             if (datas === null) {
@@ -200,7 +202,7 @@ export default function Add() {
                                             className='form-control'
                                             value={customers.salary}
                                             onChange={handleChange}
-                                            placeholder='Salary'
+                                            placeholder='Ex: 15,000 - 80,000'
                                             name="salary" id="salary" />
                                         {/* <span className='input-group-text'><i className='fa fa-home'></i></span>
                                     </div>
@@ -321,8 +323,8 @@ export default function Add() {
         }
         if (customers.salary === "") {
             errors.salary = "Salary is reqired";
-        } else if (customers.salary < 20000) {
-            errors.salary = "Min salary 20000";
+        } else if (customers.salary < 15000) {
+            errors.salary = "Min salary 15000";
         } else if (customers.salary > 80000) {
             errors.salary = "Max salary 80000";
         }

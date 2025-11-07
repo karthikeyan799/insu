@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { API_BASE_LINE } from '../API';
 
 export default function UpdatePolicy() {
     const [policy, setPolicy] = useState({
@@ -33,7 +34,8 @@ export default function UpdatePolicy() {
             setError(validationError)
         }
         try {
-            const result = await axios.post(`http://localhost:8080/updatePolicy?policyId=${policy.policyId}`, policy);
+            // const result = await axios.post(`http://localhost:8080/updatePolicy?policyId=${policy.policyId}`, policy);
+            const result = await axios.post(`${API_BASE_LINE}updatePolicy?policyId=${policy.policyId}`, policy);
             const datas = result.data.policy;
             if (datas === null) {
                 alert("update failed")
@@ -49,7 +51,8 @@ export default function UpdatePolicy() {
     const [add, setAdd] = useState([]);
     const loadPolicy = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/fetchAllPolicy");
+            // const result = await axios.get("http://localhost:8080/fetchAllPolicy");
+            const result = await axios.get(`${API_BASE_LINE}fetchAllPolicy`);
             const rec = result.data.listPolicy;
             // setCustomers(result.data.listPolicy);
             setAdd(rec);
@@ -66,7 +69,8 @@ export default function UpdatePolicy() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const result = await axios.get(`http://localhost:8080/fetchPolicyById?id=${policy.policyId}`)
+            // const result = await axios.get(`http://localhost:8080/fetchPolicyById?id=${policy.policyId}`)
+            const result = await axios.get(`${API_BASE_LINE}fetchPolicyById?id=${policy.policyId}`)
             const rec = result.data.policy;
             console.log(result.data.policy);
             setPolicy(rec);

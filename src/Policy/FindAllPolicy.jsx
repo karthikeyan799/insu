@@ -1,5 +1,6 @@
 import axios, { Axios } from 'axios'
 import React, { useEffect, useState } from 'react'
+import { API_BASE_LINE } from '../API';
 
 
 export default function FindAllPolicy() {
@@ -11,7 +12,8 @@ export default function FindAllPolicy() {
 
     const fetchAll = async (e) => {
         try {
-            const result = await axios.get("http://localhost:8080/fetchAllPolicy");
+            // const result = await axios.get("http://localhost:8080/fetchAllPolicy");
+            const result = await axios.get(`${API_BASE_LINE}fetchAllPolicy`);
             const rec = result.data.listPolicy;
             if (rec === null) {
                 setValid(false);

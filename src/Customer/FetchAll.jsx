@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import FindAllPolicy from '../Policy/FindAllPolicy';
+import { API_BASE_LINE } from '../API';
 
 export default function FetchAll() {
   const [patient, setPatient] = useState([]);
@@ -10,7 +11,8 @@ export default function FetchAll() {
   const [valid, setValid] = useState(false);
   const downlode = async () => {
     try {
-      const result = await axios.get("http://localhost:8080/excel", { responseType: "blob" });
+      // const result = await axios.get("http://localhost:8080/excel", { responseType: "blob" });
+      const result = await axios.get(`${API_BASE_LINE}excel`, { responseType: "blob" });
       console.log(result.data);
       const url = URL.createObjectURL(result.data);
       // Create a link element and trigger download
@@ -31,7 +33,8 @@ export default function FetchAll() {
   }
   const fetchAll = async () => {
     try {
-      const result = await axios.get("http://localhost:8080/fetchAllCustomer");
+      // const result = await axios.get("http://localhost:8080/fetchAllCustomer");
+      const result = await axios.get(`${API_BASE_LINE}fetchAllCustomer`);
       const datas = result.data.listCustomer;
       console.log(result.data)
       setValid(true);
@@ -49,7 +52,8 @@ export default function FetchAll() {
     }
   }
   const fetchPolicyById = async () => {
-    const result = await axios.get(`http://localhost:8080/fetchPolicyById?id=${fetch.policyId}`,)
+    // const result = await axios.get(`http://localhost:8080/fetchPolicyById?id=${fetch.policyId}`,)
+    const result = await axios.get(`${API_BASE_LINE}fetchPolicyById?id=${fetch.policyId}`,)
     const rec = result.data.policy;
     if (rec === null) {
       alert("Policy data not found");
@@ -61,7 +65,8 @@ export default function FetchAll() {
   const deleteCustomer = async (id) => {
     const windowsalert = window.confirm("Are you sure you want to delete this record?")
     if (windowsalert) {
-      await axios.delete(`http://localhost:8080/delete/${id}`);
+      // await axios.delete(`http://localhost:8080/delete/${id}`);
+      await axios.delete(`${API_BASE_LINE}delete/${id}`);
       // const rec=result.data.listCustomer;
       // setPatient(rec);
       fetchAll();

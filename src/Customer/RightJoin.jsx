@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { API_BASE_LINE } from '../API';
 
 export default function RightJoin() {
   const [patient, setPatient] = useState([]);
@@ -9,7 +10,8 @@ export default function RightJoin() {
   const rightJoin = async () => {
     try {
       // const result = await axios.get("http://localhost:8080/CustomerWithPolicyRight");
-      const result = await axios.get("http://localhost:8080/CustomerWithPolicyLeft")
+      // const result = await axios.get("http://localhost:8080/CustomerWithPolicyLeft")
+      const result = await axios.get(`${API_BASE_LINE}CustomerWithPolicyLeft`)
       const datas = result.data.listCustomer;
       setValid(true);
       if (datas === null) {
@@ -31,7 +33,8 @@ export default function RightJoin() {
     try {
       const confirmDelete = window.confirm("Are you sure you want to delete this record?");
       if (confirmDelete) {
-        await axios.delete(`http://localhost:8080/delete/${id}`)
+        // await axios.delete(`http://localhost:8080/delete/${id}`)
+        await axios.delete(`${API_BASE_LINE}delete/${id}`)
         rightJoin();
       }
     } catch (e) {
@@ -44,7 +47,8 @@ export default function RightJoin() {
   const [valid, setValid] = useState(false);
   const fetchAll = async () => {
     try {
-      const result = await axios.get("http://localhost:8080/fetchAllCustomer");
+      // const result = await axios.get("http://localhost:8080/fetchAllCustomer");
+      const result = await axios.get(`${API_BASE_LINE}fetchAllCustomer`);
       setValid(true);
       if (result === null) {
         setValid(false);

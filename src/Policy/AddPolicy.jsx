@@ -1,5 +1,6 @@
 import axios, { } from 'axios';
 import React, { useEffect, useState } from 'react'
+import { API_BASE_LINE } from '../API';
 
 export default function AddPolicy() {
     useEffect(() => {
@@ -45,7 +46,8 @@ export default function AddPolicy() {
     const [data, setData] = useState(false);
     const loadCustomer = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/fetchAllCustomer");
+            // const result = await axios.get("http://localhost:8080/fetchAllCustomer");
+            const result = await axios.get(`${API_BASE_LINE}fetchAllCustomer`);
             const rec = result.data.listCustomer;
             if (rec == null) {
                 setData(false);
@@ -78,7 +80,8 @@ export default function AddPolicy() {
         }
         try {
 
-            const result = await axios.post("http://localhost:8080/createPolicy", payload);
+            // const result = await axios.post("http://localhost:8080/createPolicy", payload);
+            const result = await axios.post(`${API_BASE_LINE}createPolicy`, payload);
             const rec = result.data.policy;
             if (rec === null) {
                 alert("Add Policy Is failer...")
