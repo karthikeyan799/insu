@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useRef, useState } from 'react'
+import { API_BASE_LINE } from '../API';
 
 export const AuthContext = createContext();
 
@@ -37,7 +38,8 @@ export default function AuthProvider({ children }) {
     const login = async (e) => {
         const { userName, password } = error;
         try {
-            const result = await axios.post('http://localhost:8080/loginUser', { userName, password });
+            // const result = await axios.post('http://localhost:8080/loginUser', { userName, password });
+            const result = await axios.post(`${API_BASE_LINE}loginUser`, { userName, password });
             const datas = result.data.message;
             // const users = result.data.message === "Email not exits";
             // const pass = result.data.message === "Login Success";
